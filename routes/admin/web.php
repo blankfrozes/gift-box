@@ -3,6 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/dashboard', function (){
-  return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+
+Route::get('/reward', 'AdminController@reward')->name('reward');
