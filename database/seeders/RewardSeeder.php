@@ -16,43 +16,43 @@ class RewardSeeder extends Seeder
     {
       $rewards = [
         [
-            'name' => '10rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_1.png',
+            'name' => 'Saldo RP 10.000',
+            'image' => 'reward/1676103859bfxZ8rSSEBqDeXRA.png',
             'is_active' => true,
         ],
         [
-            'name' => '15rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_2.png',
+            'name' => 'Saldo RP 15.000',
+            'image' => 'reward/1676103866B5lvPt4RQV5a2sIX.png',
             'is_active' => true,
         ],
         [
-            'name' => '20rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_3.png',
+            'name' => 'Saldo RP 20.000',
+            'image' => 'reward/16761038733bLvGOx5DjtvhDiK.png',
             'is_active' => true,
         ],
         [
-            'name' => '50rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_4.png',
+            'name' => 'Saldo RP 50.000',
+            'image' => 'reward/1676103880jjz0WBMdwbWp3wZ2.png',
             'is_active' => true,
         ],
         [
-            'name' => '100rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_5.png',
+            'name' => 'Saldo RP 100.000',
+            'image' => 'reward/16761038899nKOvj7Ar9QhP48H.png',
             'is_active' => true,
         ],
         [
-            'name' => '150rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_6.png',
+            'name' => 'Saldo RP 150.000',
+            'image' => 'reward/1676103893Rh0QxmGtandQWJ4D.png',
             'is_active' => true,
         ],
         [
-            'name' => '250rb saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_7.png',
+            'name' => 'Saldo RP 250.000',
+            'image' => 'reward/1676103899CSN6yEhiQUxkuwCg.png',
             'is_active' => true,
         ],
         [
-            'name' => '1jt saldo',
-            'image' => 'https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_8.png',
+            'name' => 'Saldo RP 1.000.000',
+            'image' => 'reward/1676103907TM8IeRInptcVmzsL.png',
             'is_active' => true,
         ],
       ];

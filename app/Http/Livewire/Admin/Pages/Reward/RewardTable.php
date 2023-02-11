@@ -5,13 +5,13 @@ namespace App\Http\Livewire\Admin\Pages\Reward;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
-use App\Models\Reward;
+use App\Models\REWARD;
 
 class RewardTable extends LivewireDatatable
 {
   public function builder()
   {
-      return Reward::query();
+      return REWARD::query();
   }
 
   public function columns()
@@ -24,9 +24,10 @@ class RewardTable extends LivewireDatatable
             ->filterable(),
 
           Column::callback(['image'], function($image){
+            $imageReward = asset('storage/' . $image);
             return <<<EOT
               <div class="flex items-center justify-center w-full">
-                <img src="$image" alt="" class="h-20"/>
+                <img src="$imageReward" alt="" class="h-20"/>
               </div>
 EOT;
           })
@@ -36,7 +37,7 @@ EOT;
             ->label('Active')
             ->filterable(),
 
-          Column::callback(['id', 'created_at'], function ($id) {
+          Column::callback(['id'], function ($id) {
             return <<<EOT
               <div class="flex flex-col items-center space-y-2">
                   <button

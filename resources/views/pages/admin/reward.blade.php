@@ -44,7 +44,7 @@
 
         <div class="flex justify-start w-full mt-4">
             <button class="px-4 py-2 text-base text-white bg-blue-700 rounded hover:bg-blue-500" x-data
-                x-on:click="$dispatch('open-create-dialog')">
+                x-on:click="$dispatch('open-create-edit-dialog')">
                 New Reward
                 <span class="ml-2">
                     <i class="fa-solid fa-circle-plus"></i>
@@ -54,4 +54,5 @@
     </div>
 
     <livewire:admin.pages.reward.reward-table />
+    <livewire:admin.pages.reward.create-edit-reward-dialog />
 </x-app-layout>
