@@ -15,4 +15,9 @@ class AdminController extends Controller
   {
       return view('pages.admin.reward');
   }
+
+  public function profile()
+  {
+      return view('pages.admin.profile');
+  }
 }

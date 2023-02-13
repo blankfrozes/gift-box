@@ -52,14 +52,14 @@
                                 Reward
                             </a>
 
-                            {{-- <a href="{{ route('config') }}"
-                                class="flex items-center px-2 py-2 text-sm font-medium text-white rounded-md group {{ \Request::route()->getName() === 'config' ? 'bg-[#5D90D2]' : '' }}">
+                            <a href="{{ route('profile') }}"
+                                class="flex items-center px-2 py-2 text-sm font-medium text-white rounded-md group {{ \Request::route()->getName() === 'profile' ? 'bg-[#5D90D2]' : '' }}">
                                 <div
-                                    class="flex items-center justify-center w-10 mr-3 text-2xl {{ \Request::route()->getName() === 'config' ? 'text-white' : 'text-[#276FCE]' }}">
-                                    <i class="fa-solid fa-gear"></i>
+                                    class="flex items-center justify-center w-10 mr-3 text-2xl {{ \Request::route()->getName() === 'profile' ? 'text-white' : 'text-[#276FCE]' }}">
+                                    <i class="fa-solid fa-user"></i>
                                 </div>
-                                Config
-                            </a> --}}
+                                Profile
+                            </a>
                         </nav>
                     </div>
                 </div>
