@@ -40,7 +40,7 @@
                                     class="flex items-center justify-center w-10 mr-3 text-2xl {{ \Request::route()->getName() === 'dashboard' ? 'text-white' : 'text-[#276FCE]' }}">
                                     <i class="fa-solid fa-award"></i>
                                 </div>
-                                List All Prize
+                                List All Voucher
                             </a>
 
                             <a href="{{ route('reward') }}"

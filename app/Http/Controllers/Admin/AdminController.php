@@ -20,4 +20,9 @@ class AdminController extends Controller
   {
       return view('pages.admin.profile');
   }
+
+  public function voucher()
+  {
+      return view('pages.admin.voucher');
+  }
 }

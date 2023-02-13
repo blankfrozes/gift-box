@@ -14,4 +14,9 @@ class Reward extends Model
   {
       return $this->where('is_active', true);
   }
+
+  public function vouchers()
+  {
+      return $this->hasMany(Voucher::class);
+  }
 }
