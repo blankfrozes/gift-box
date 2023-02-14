@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/rewards', 'RewardController@index')->name('rewards');
 
-// Route::get('/reward', 'AdminController@reward')->name('reward');
+Route::post('/voucher/use', 'VoucherController@getReward')->name('voucher-get-reward');
 
-// Route::get('/profile', 'AdminController@profile')->name('profile');
+Route::post('/voucher/use/{id}', 'VoucherController@use')->name('voucher-use');

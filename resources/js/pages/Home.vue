@@ -6,6 +6,7 @@ import { HalfCircleSpinner } from "epic-spinners";
 import { shuffleArray } from "../helper/shuffleArray";
 import RewardPopUp from "../components/RewardPopUp.vue";
 import { getAllRewards } from "../api/rewards.js";
+import { getVoucherReward, useVoucher } from "../api/voucher.js";
 import { useAsyncState } from "@vueuse/core";
 
 // let rewards;
@@ -65,14 +66,14 @@ const submitVoucherCode = async () => {
     return;
   }
 
-  if (input.voucherCode == "test") {
-    voucherReward.value = {
-      id: 2,
-      name: "Reward 2",
-      image:
-        "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_2.png",
-    };
-  } else {
+  try {
+    const { state, error } = useAsyncState(
+      await getVoucherReward(input.voucherCode).then((t) => t),
+      ""
+    );
+
+    voucherReward.value = state;
+  } catch (error) {
     voucherError.value = true;
     processSubmit.value = false;
     return;
@@ -88,8 +89,14 @@ const showProcess = () => {
   showOpen.value = false;
 };
 
-const annouceReward = (index, reward, oldRewards) => {
+const annouceReward = async (index, reward, oldRewards) => {
   if (!reward) {
+    return;
+  }
+
+  try {
+    await useVoucher(reward.value.id);
+  } catch (error) {
     return;
   }
 
@@ -98,7 +105,7 @@ const annouceReward = (index, reward, oldRewards) => {
   oldRewards = shuffleArray(oldRewards);
 
   for (let i = 0; i < oldRewards.length; i++) {
-    if (oldRewards[i]["id"] == reward.id) {
+    if (oldRewards[i]["id"] == reward.value.reward_id) {
       [oldRewards[i], oldRewards[index]] = [oldRewards[index], oldRewards[i]];
       break;
     }
@@ -221,11 +228,17 @@ const annouceReward = (index, reward, oldRewards) => {
                     placeholder="Voucher Code"
                     autofocus
                   />
-                  <span v-if="v$.voucherCode.$error" class="px-2 text-sm text-red-500">{{
-                    v$.voucherCode.$errors[0].$message
-                  }}</span>
+                  <div
+                    v-if="v$.voucherCode.$error"
+                    class="w-full px-2 mb-2 text-sm font-bold text-red-500"
+                  >
+                    {{ v$.voucherCode.$errors[0].$message }}
+                  </div>
 
-                  <span class="w-full text-sm font-bold text-white" v-if="voucherError">
+                  <div
+                    class="w-full px-2 text-sm font-bold text-white"
+                    v-if="voucherError"
+                  >
                     The code you entered is wrong, please contact Admin to get the ticket
                     code
                     <a
@@ -233,7 +246,7 @@ const annouceReward = (index, reward, oldRewards) => {
                       class="text-green-500 hover:underline hover:text-green-700"
                       >here</a
                     >.
-                  </span>
+                  </div>
                 </div>
 
                 <button

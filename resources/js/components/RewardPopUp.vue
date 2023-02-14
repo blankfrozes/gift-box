@@ -31,12 +31,13 @@ defineExpose({
     >
       <div class="w-full mb-40 xl:px-20 text-center text-base md:text-xl">
         <div class="w-full font-bold text-orange-500 mb-4">
-          Congratulations!, you won Saldo RP 15.000. Please Screenshot this page as your
-          winning proof.
+          Congratulations!, you won {{ reward.value.reward_name }}. Please Screenshot this
+          page as your winning proof.
         </div>
 
         <div class="w-full font-bold text-white mb-6">
-          Username: tester, Voucher Code: 123ASD
+          Username: {{ reward.value.username }}, Voucher Code:
+          {{ reward.value.code }}
         </div>
 
         <div class="w-full flex justify-center gap-x-4">
@@ -64,7 +65,7 @@ defineExpose({
             <div
               class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
             >
-              <img :src="`${reward.image}`" alt="" class="w-[45%]" />
+              <img :src="`${reward.value.reward_image}`" alt="" class="w-[45%]" />
             </div>
             <img
               src="/images/left_box.png"
