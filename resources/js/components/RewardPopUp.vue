@@ -26,9 +26,36 @@ defineExpose({
 <template>
   <transition-fade>
     <div
-      class="w-full fixed z-50 bg-black bg-opacity-50 h-[100vh] flex justify-center items-center top-0"
+      class="w-full fixed z-50 bg-black bg-opacity-50 h-[100vh] flex flex-col justify-center items-center top-0"
       v-if="show"
     >
+      <div class="w-full mb-40 xl:px-20 text-center text-base md:text-xl">
+        <div class="w-full font-bold text-orange-500 mb-4">
+          Congratulations!, you won Saldo RP 15.000. Please Screenshot this page as your
+          winning proof.
+        </div>
+
+        <div class="w-full font-bold text-white mb-6">
+          Username: tester, Voucher Code: 123ASD
+        </div>
+
+        <div class="w-full flex justify-center gap-x-4">
+          <a
+            href="#"
+            class="px-6 py-3 text-sm font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+          >
+            Claim Reward
+          </a>
+
+          <a
+            href="/"
+            class="px-6 py-3 text-sm font-bold text-white bg-green-500 rounded hover:bg-green-700"
+          >
+            Back to Home
+          </a>
+        </div>
+      </div>
+
       <transition-scale>
         <div v-if="showBox" class="relative w-80 max-w-[100%]">
           <div class="relative z-20 w-full">

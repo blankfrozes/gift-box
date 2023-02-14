@@ -5,6 +5,15 @@ import { useVuelidate } from "@vuelidate/core";
 import { HalfCircleSpinner } from "epic-spinners";
 import { shuffleArray } from "../helper/shuffleArray";
 import RewardPopUp from "../components/RewardPopUp.vue";
+import { getAllRewards } from "../api/rewards.js";
+import { useAsyncState } from "@vueuse/core";
+
+// let rewards;
+
+let { state: rewards, isReady } = useAsyncState(
+  getAllRewards().then((t) => t.data),
+  ""
+);
 
 const showReward = ref(false);
 const enableReward = ref(false);
@@ -31,57 +40,6 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, input);
 
 const voucherReward = ref();
-
-let rewards = reactive([
-  {
-    id: 1,
-    name: "Reward 1",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_1.png",
-  },
-  {
-    id: 2,
-    name: "Reward 2",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_2.png",
-  },
-  {
-    id: 3,
-    name: "Reward 3",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_3.png",
-  },
-  {
-    id: 4,
-    name: "Reward 4",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_4.png",
-  },
-  {
-    id: 5,
-    name: "Reward 5",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_5.png",
-  },
-  {
-    id: 6,
-    name: "Reward 6",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_6.png",
-  },
-  {
-    id: 7,
-    name: "Reward 7",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_7.png",
-  },
-  {
-    id: 8,
-    name: "Reward 8",
-    image:
-      "https://daevhricapzoujxzjpbs.supabase.co/storage/v1/object/public/testing/reward_8.png",
-  },
-]);
 
 const showRewardBox = () => {
   showReward.value = true;
@@ -130,21 +88,23 @@ const showProcess = () => {
   showOpen.value = false;
 };
 
-const annouceReward = (index, reward) => {
+const annouceReward = (index, reward, oldRewards) => {
   if (!reward) {
     return;
   }
 
   showReward.value = true;
 
-  rewards = shuffleArray(rewards);
+  oldRewards = shuffleArray(oldRewards);
 
-  for (let i = 0; i < rewards.length; i++) {
-    if (rewards[i].id == reward.id) {
-      [rewards[i], rewards[index]] = [rewards[index], rewards[i]];
+  for (let i = 0; i < oldRewards.length; i++) {
+    if (oldRewards[i]["id"] == reward.id) {
+      [oldRewards[i], oldRewards[index]] = [oldRewards[index], oldRewards[i]];
       break;
     }
   }
+
+  rewards = reactive(oldRewards);
 
   setTimeout(() => {
     selectedRewardIndex.value = index;
@@ -156,6 +116,7 @@ const annouceReward = (index, reward) => {
 
 <template>
   <div class="w-full">
+    <!-- <div v-if="isReady">{{ rewards.length }}</div> -->
     <div class="container px-20 mx-auto xl:px-60 2xl:px-80">
       <div class="flex items-center justify-center w-full mt-8 mb-10">
         <img src="/images/mystery.png" alt="" class="relative z-40 w-80" />
@@ -163,12 +124,12 @@ const annouceReward = (index, reward) => {
 
       <div class="relative w-full mb-10">
         <div class="grid w-full grid-cols-4 gap-8">
-          <div class="" v-for="(reward, i) in rewards" :key="reward.id">
+          <div class="" v-for="(reward, i) in rewards" :key="reward['id']" v-if="isReady">
             <div class="relative w-full" v-if="selectedRewardIndex != i">
               <div
                 class="absolute top-0 left-0 z-30 w-full h-full"
                 v-if="!showReward"
-                @click="annouceReward(i, voucherReward)"
+                @click="annouceReward(i, voucherReward, rewards)"
               ></div>
 
               <div class="relative z-20 w-full">
@@ -177,7 +138,7 @@ const annouceReward = (index, reward) => {
                 <div
                   class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
                 >
-                  <img :src="`${reward.image}`" alt="" class="w-[45%]" />
+                  <img :src="`${reward['image']}`" alt="" class="w-[45%]" />
                 </div>
                 <img
                   src="/images/left_box.png"
