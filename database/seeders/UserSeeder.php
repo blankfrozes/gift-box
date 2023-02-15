@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         if (! User::where('email', 'admin@email.com')->exists()) {
             User::create([

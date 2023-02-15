@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Models\Constants\VoucherStatus;
 use App\Models\Voucher;
@@ -38,7 +39,7 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -50,12 +51,12 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
 
-    public function getReward(Request $request)
+    public function getReward(Request $request): Response
     {
         // $this->validate($request, [
         //   'voucher_code' => 'required|exists:vouchers,code',
@@ -81,7 +82,7 @@ class VoucherController extends Controller
         return response()->json($voucher);
     }
 
-    public function use(Request $request)
+    public function use(Request $request): Response
     {
         $voucher = Voucher::where('id', $request->id)->where('status', VoucherStatus::AVAILABLE_TO_USE)->first();
 
@@ -103,7 +104,7 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

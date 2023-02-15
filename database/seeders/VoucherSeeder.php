@@ -15,7 +15,7 @@ class VoucherSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         for ($i = 0; $i < 5; $i++) {
             $code = null;
