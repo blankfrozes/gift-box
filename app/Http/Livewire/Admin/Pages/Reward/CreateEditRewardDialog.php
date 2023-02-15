@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Pages\Reward;
 
 use App\Models\Constants\VoucherStatus;
 use Livewire\Component;
-use App\Models\REWARD;
+use App\Models\Reward;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
@@ -33,7 +33,7 @@ class CreateEditRewardDialog extends Component
   {
       if ($id) {
           $this->editMode = true;
-          $reward = REWARD::find($id);
+          $reward = Reward::find($id);
           $this->reward = $reward->toArray();
       } else {
           $this->reward['is_active'] = true;
@@ -68,11 +68,11 @@ class CreateEditRewardDialog extends Component
         if (!$this->editMode) {
           $newReward = $this->reward;
           $newReward['image'] = $imagePath;
-          REWARD::create($newReward);
+          Reward::create($newReward);
         }else{
           $updateReward = $this->reward;
           if ($imagePath) $updateReward['image'] = $imagePath;
-          REWARD::find($updateReward['id'])->update($updateReward);
+          Reward::find($updateReward['id'])->update($updateReward);
         }
       } catch (\Exception $e) {
           return $this->dispatchBrowserEvent('flash', ['type' => 'error', 'message' => 'Something went wrong!']);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\REWARD;
+use App\Models\Reward;
 use Illuminate\Http\JsonResponse;
 
 class RewardController extends Controller
@@ -16,7 +16,7 @@ class RewardController extends Controller
      */
     public function index(): JsonResponse
     {
-        $rewards = REWARD::select(['id', 'name', 'image'])
+        $rewards = Reward::select(['id', 'name', 'image'])
           ->where('is_active', true)
           ->paginate(12);
 

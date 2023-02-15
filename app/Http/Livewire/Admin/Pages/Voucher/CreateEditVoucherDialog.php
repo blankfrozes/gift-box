@@ -77,7 +77,7 @@ class CreateEditVoucherDialog extends Component
 
     public function render()
     {
-        $rewards = REWARD::all()->map(
+        $rewards = Reward::all()->map(
             function ($e) {
                 return [
                     'label' => $e->name,

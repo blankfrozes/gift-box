@@ -5,13 +5,13 @@ namespace App\Http\Livewire\Admin\Pages\Reward;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
-use App\Models\REWARD;
+use App\Models\Reward;
 
 class RewardTable extends LivewireDatatable
 {
   public function builder()
   {
-      return REWARD::query();
+      return Reward::query();
   }
 
   public function columns()
