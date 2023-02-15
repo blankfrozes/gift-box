@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\REWARD;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class RewardController extends Controller
 {
@@ -20,10 +20,10 @@ class RewardController extends Controller
           ->where('is_active', true)
           ->paginate(12);
 
-        $rewards =  $rewards->toArray();
+        $rewards = $rewards->toArray();
 
         foreach ($rewards['data'] as $key => $value) {
-          $rewards['data'][$key]['image'] = asset('storage/' . $rewards['data'][$key]['image']);
+            $rewards['data'][$key]['image'] = asset('storage/'.$rewards['data'][$key]['image']);
         }
 
         return response()->json($rewards);

@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class VoucherStatus extends Model
 {
-    const AVAILABLE_TO_USE = "AVAILABLE_TO_USE";
-    const USED = "USED";
-    const CLAIMED = "CLAIMED";
-    const ABORTED = "ABORTED";
+    const AVAILABLE_TO_USE = 'AVAILABLE_TO_USE';
+
+    const USED = 'USED';
+
+    const CLAIMED = 'CLAIMED';
+
+    const ABORTED = 'ABORTED';
 
     public static function getHumanLanguageDict()
     {
@@ -18,6 +21,7 @@ class VoucherStatus extends Model
         $arr[self::USED] = 'Used';
         $arr[self::CLAIMED] = 'Claimed';
         $arr[self::ABORTED] = 'Aborted';
+
         return $arr;
     }
 
@@ -39,10 +43,11 @@ class VoucherStatus extends Model
     public static function options()
     {
         $humanLanguageDict = self::getHumanLanguageDict();
+
         return collect(
             self::values()
         )->map(
-            function ($e) use ($humanLanguageDict) {
+            function ($e) {
                 return [
                     'value' => $e,
                     'label' => $e,

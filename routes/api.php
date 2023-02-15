@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-  'namespace' => 'Api',
-  'prefix' => 'v1',
+    'namespace' => 'Api',
+    'prefix' => 'v1',
 ], function () {
-  includeRouteFiles(__DIR__ . '/api/');
+    includeRouteFiles(__DIR__.'/api/');
 });

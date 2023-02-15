@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire\Admin\Pages\Voucher;
 
-use Livewire\Component;
-use App\Models\Voucher;
 use App\Models\Constants\VoucherStatus;
+use App\Models\Voucher;
+use Livewire\Component;
 
 class CancelVoucherDialog extends Component
 {
     public $voucher;
+
     public $code;
+
     public $initializing = true;
 
     public function init($id)

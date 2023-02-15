@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Constants\VoucherStatus;
+use App\Models\Voucher;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Voucher;
-use App\Models\Constants\VoucherStatus;
-use Carbon\Carbon;
 
 class VoucherController extends Controller
 {
@@ -64,30 +64,29 @@ class VoucherController extends Controller
             'voucher_code' => 'required|exists:vouchers,code',
         ]);
 
-        if($validator->fails())
-        {
-          return response()->json($validator->errors(), 422);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
 
         $voucher = Voucher::select(['id', 'code', 'reward_id', 'reward_name', 'reward_image', 'status'])->where('code', $request->voucher_code)->where('status', VoucherStatus::AVAILABLE_TO_USE)->first();
 
-        if(!$voucher){
-          return response()->json(["error" => "Voucher can't be used!"], 422);
+        if (! $voucher) {
+            return response()->json(['error' => "Voucher can't be used!"], 422);
         }
 
         $voucher = $voucher->toArray();
 
-        $voucher['reward_image'] = asset("storage/". $voucher['reward_image']);
+        $voucher['reward_image'] = asset('storage/'.$voucher['reward_image']);
 
         return response()->json($voucher);
     }
 
-    public function use(Request $request){
-
+    public function use(Request $request)
+    {
         $voucher = Voucher::where('id', $request->id)->where('status', VoucherStatus::AVAILABLE_TO_USE)->first();
 
-        if(!$voucher){
-          return response()->json(["error" => "Voucher can't be used!"], 422);
+        if (! $voucher) {
+            return response()->json(['error' => "Voucher can't be used!"], 422);
         }
 
         $updateVoucher = $voucher->toArray();
@@ -95,7 +94,7 @@ class VoucherController extends Controller
         $updateVoucher['used_at'] = Carbon::now();
         Voucher::find($updateVoucher['id'])->update($updateVoucher);
 
-        return response()->json(["message" => "Success!"], 200);
+        return response()->json(['message' => 'Success!'], 200);
     }
 
     /**

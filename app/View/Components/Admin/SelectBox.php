@@ -7,17 +7,23 @@ use Illuminate\View\Component;
 class SelectBox extends Component
 {
     public $label;
+
     public $placeholder;
+
     public $name;
+
     public $options;
+
     public $class;
+
     public $disabled;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = "", $placeholder = null, $name, $options = [], $class = "", $disabled = false)
+    public function __construct($label, $placeholder, $name, $options = [], $class = '', $disabled = false)
     {
         $this->placeholder = $placeholder ?? ' -- select an option -- ';
         $this->options = $options;

@@ -2,21 +2,24 @@
 
 namespace App\Http\Livewire\Admin\Pages\Voucher;
 
-use Livewire\Component;
-use App\Models\Voucher;
-use App\Models\Reward;
 use App\Models\Constants\VoucherStatus;
+use App\Models\Reward;
+use App\Models\Voucher;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class CreateEditVoucherDialog extends Component
 {
     public $editMode = false;
+
     public $initializing = true;
+
     public $voucher = [];
 
     protected $rules = [
-      'voucher.username' => 'required',
+        'voucher.username' => 'required',
     ];
+
     protected $validationAttributes = [
         'voucher.code' => 'code',
         'voucher.reward_id' => 'reward_id',
@@ -41,23 +44,25 @@ class CreateEditVoucherDialog extends Component
         $reward = Reward::find($this->voucher['reward_id']);
 
         try {
-            if (!$this->editMode) {
-              $code = null;
-              while (true) {
-                  $code = strtoupper(Str::random(10));
-                  if (!VOUCHER::where('code', $code)->exists()) break;
-              }
-              $this->voucher['code'] = $code;
-              $this->voucher['status'] = VoucherStatus::AVAILABLE_TO_USE;
-              $this->voucher['reward_name'] = $reward->name;
-              $this->voucher['reward_image'] = $reward->image;
-              $newVoucher = $this->voucher;
-              VOUCHER::create($newVoucher);
-            }else{
-              $this->voucher['reward_name'] = $reward->name;
-              $this->voucher['reward_image'] = $reward->image;
-              $updateVoucher = $this->voucher;
-              VOUCHER::find($updateVoucher['id'])->update($updateVoucher);
+            if (! $this->editMode) {
+                $code = null;
+                while (true) {
+                    $code = strtoupper(Str::random(10));
+                    if (! VOUCHER::where('code', $code)->exists()) {
+                        break;
+                    }
+                }
+                $this->voucher['code'] = $code;
+                $this->voucher['status'] = VoucherStatus::AVAILABLE_TO_USE;
+                $this->voucher['reward_name'] = $reward->name;
+                $this->voucher['reward_image'] = $reward->image;
+                $newVoucher = $this->voucher;
+                VOUCHER::create($newVoucher);
+            } else {
+                $this->voucher['reward_name'] = $reward->name;
+                $this->voucher['reward_image'] = $reward->image;
+                $updateVoucher = $this->voucher;
+                VOUCHER::find($updateVoucher['id'])->update($updateVoucher);
             }
         } catch (\Exception $e) {
             return $this->dispatchBrowserEvent('flash', ['type' => 'error', 'message' => 'Something went wrong!']);
@@ -87,7 +92,7 @@ class CreateEditVoucherDialog extends Component
         );
 
         return view('livewire.admin.pages.voucher.create-edit-voucher-dialog', [
-          'rewardLists' => $rewards,
+            'rewardLists' => $rewards,
         ]);
     }
 }

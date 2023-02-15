@@ -11,6 +11,7 @@ class Loader extends Component
     public $height;
 
     public $thickness;
+
     /**
      * Create a new component instance.
      *

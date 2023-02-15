@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-      Schema::create('rewards', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('image', 2048)->nullable();
-        $table->boolean('is_active',)->default(false);
-        $table->timestamps();
-    });
+        Schema::create('rewards', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('image', 2048)->nullable();
+            $table->boolean('is_active', )->default(false);
+            $table->timestamps();
+        });
     }
 
     /**

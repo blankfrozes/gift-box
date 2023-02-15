@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/dashboard', 'AdminController@voucher')->name('dashboard');
 
 Route::get('/reward', 'AdminController@reward')->name('reward');
