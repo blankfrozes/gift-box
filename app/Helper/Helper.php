@@ -2,7 +2,7 @@
 
 // use Carbon\Carbon;
 
-if (!function_exists('includeFilesInFolder')) {
+if (! function_exists('includeFilesInFolder')) {
     /**
      * Loops through a folder and requires all PHP files
      * Searches sub-directories as well.
@@ -16,7 +16,7 @@ if (!function_exists('includeFilesInFolder')) {
             $it = new RecursiveIteratorIterator($rdi);
 
             while ($it->valid()) {
-                if (!$it->isDot() && $it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php') {
+                if (! $it->isDot() && $it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php') {
                     require $it->key();
                 }
 
@@ -28,7 +28,7 @@ if (!function_exists('includeFilesInFolder')) {
     }
 }
 
-if (!function_exists('includeRouteFiles')) {
+if (! function_exists('includeRouteFiles')) {
 
     /**
      * @param $folder
@@ -39,20 +39,24 @@ if (!function_exists('includeRouteFiles')) {
     }
 }
 
-if (!function_exists('gcd')) {
-
+if (! function_exists('gcd')) {
     function gcd($x, $y)
     {
-        if ($y == 0) return $x;
+        if ($y == 0) {
+            return $x;
+        }
+
         return gcd($y, $x % $y);
     }
 }
 
-if (!function_exists('printBoolean')) {
-
+if (! function_exists('printBoolean')) {
     function printBoolean($value)
     {
-        if ($value) return "Yes";
-        return "No";
+        if ($value) {
+            return 'Yes';
+        }
+
+        return 'No';
     }
 }

@@ -2,15 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Pages\Voucher;
 
-use Livewire\Component;
-use App\Models\Voucher;
 use App\Models\Constants\VoucherStatus;
+use App\Models\Voucher;
 use Carbon\Carbon;
+use Livewire\Component;
 
 class DetailVoucherDialog extends Component
 {
     public $voucherId;
+
     public $initializing = true;
+
     public $voucher;
 
     protected $listeners = ['refreshState' => 'refreshState'];
@@ -40,7 +42,6 @@ class DetailVoucherDialog extends Component
             $updateVoucher['status'] = VoucherStatus::CLAIMED;
             $updateVoucher['claim_at'] = Carbon::now();
             Voucher::find($updateVoucher['id'])->update($updateVoucher);
-
         } catch (\Exception $e) {
             return $this->dispatchBrowserEvent('flash', ['type' => 'error', 'message' => 'Something went wrong!']);
         }

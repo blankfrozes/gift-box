@@ -211,7 +211,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-      'VoucherStatus' => App\Models\Constants\VoucherStatus::class,
+        'VoucherStatus' => App\Models\Constants\VoucherStatus::class,
     ])->toArray(),
 
 ];

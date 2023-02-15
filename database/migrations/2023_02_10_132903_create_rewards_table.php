@@ -8,26 +8,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-      Schema::create('rewards', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('image', 2048)->nullable();
-        $table->boolean('is_active',)->default(false);
-        $table->timestamps();
-    });
+        Schema::create('rewards', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('image', 2048)->nullable();
+            $table->boolean('is_active', )->default(false);
+            $table->timestamps();
+        });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('rewards');
     }

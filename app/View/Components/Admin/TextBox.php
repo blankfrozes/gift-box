@@ -7,18 +7,25 @@ use Illuminate\View\Component;
 class TextBox extends Component
 {
     public $label;
+
     public $placeholder;
+
     public $name;
+
     public $class;
+
     public $type;
+
     public $disabled;
+
     public $debounced;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $label, $placeholder = '', $class = "", $type = "text", $disabled = false, $debounced = false)
+    public function __construct($name, $label, $placeholder = '', $class = '', $type = 'text', $disabled = false, $debounced = false)
     {
         $this->label = $label;
         $this->placeholder = $placeholder;

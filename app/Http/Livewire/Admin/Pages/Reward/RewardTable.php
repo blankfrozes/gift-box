@@ -2,43 +2,44 @@
 
 namespace App\Http\Livewire\Admin\Pages\Reward;
 
-use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\BooleanColumn;
-use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use App\Models\REWARD;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
+use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class RewardTable extends LivewireDatatable
 {
-  public function builder()
-  {
-      return REWARD::query();
-  }
-
-  public function columns()
+    public function builder()
     {
-      return [
-          Column::index($this),
+        return REWARD::query();
+    }
 
-          Column::name('name')
-            ->label('Name')
-            ->filterable(),
+    public function columns()
+    {
+        return [
+            Column::index($this),
 
-          Column::callback(['image'], function($image){
-            $imageReward = asset('storage/' . $image);
-            return <<<EOT
+            Column::name('name')
+              ->label('Name')
+              ->filterable(),
+
+            Column::callback(['image'], function ($image) {
+                $imageReward = asset('storage/'.$image);
+
+                return <<<EOT
               <div class="flex items-center justify-center w-full">
                 <img src="$imageReward" alt="" class="h-20"/>
               </div>
 EOT;
-          })
-            ->label('Image'),
+            })
+              ->label('Image'),
 
-          BooleanColumn::name('is_active')
-            ->label('Active')
-            ->filterable(),
+            BooleanColumn::name('is_active')
+              ->label('Active')
+              ->filterable(),
 
-          Column::callback(['id'], function ($id) {
-            return <<<EOT
+            Column::callback(['id'], function ($id) {
+                return <<<EOT
               <div class="flex flex-col items-center space-y-2">
                   <button
                       class="px-4 py-1 text-sm text-white bg-blue-700 rounded hover:bg-blue-500"
@@ -49,7 +50,7 @@ EOT;
                   </button>
               </div>
 EOT;
-          }),
-      ];
+            }),
+        ];
     }
 }

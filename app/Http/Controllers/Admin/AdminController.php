@@ -3,26 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
-  public function dashboard()
-  {
-      return view('pages.admin.dashboard');
-  }
+    public function dashboard(): View
+    {
+        return view('pages.admin.dashboard');
+    }
 
-  public function reward()
-  {
-      return view('pages.admin.reward');
-  }
+    public function reward(): View
+    {
+        return view('pages.admin.reward');
+    }
 
-  public function profile()
-  {
-      return view('pages.admin.profile');
-  }
+    public function profile(): View
+    {
+        return view('pages.admin.profile');
+    }
 
-  public function voucher()
-  {
-      return view('pages.admin.voucher');
-  }
+    public function voucher(): View
+    {
+        return view('pages.admin.voucher');
+    }
 }
