@@ -36,18 +36,16 @@ class VoucherStatus extends Model
         ];
     }
 
-    public static function options()
+    public static function options(): array
     {
         $humanLanguageDict = self::getHumanLanguageDict();
         return collect(
             self::values()
         )->map(
-            function ($e) use ($humanLanguageDict) {
-                return [
-                    'value' => $e,
-                    'label' => $e,
-                ];
-            }
+            fn($e) => [
+                'value' => $e,
+                'label' => $e,
+            ]
         )->all();
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notification;
 
 class User extends Authenticatable
 {
@@ -58,4 +59,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Route notifications for the Slack channel.
+     */
+    public function routeNotificationForSlack(Notification $notification): string
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 }

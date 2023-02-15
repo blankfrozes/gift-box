@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
-import { required, helpers } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
-import { HalfCircleSpinner } from "epic-spinners";
-import { shuffleArray } from "../helper/shuffleArray";
-import RewardPopUp from "../components/RewardPopUp.vue";
-import { getAllRewards } from "../api/rewards.js";
-import { getVoucherReward, useVoucher } from "../api/voucher.js";
-import { useAsyncState } from "@vueuse/core";
+import { ref, reactive, computed } from 'vue';
+import { required, helpers } from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { HalfCircleSpinner } from 'epic-spinners';
+import { shuffleArray } from '@/helper/shuffleArray';
+import RewardPopUp from '@/components/RewardPopUp.vue';
+import { getAllRewards } from '@/api/rewards.js';
+import { getVoucherReward, useVoucher } from '@/api/voucher.js';
+import { useAsyncState } from '@vueuse/core';
 
 // let rewards;
 
@@ -105,7 +105,7 @@ const annouceReward = async (index, reward, oldRewards) => {
   oldRewards = shuffleArray(oldRewards);
 
   for (let i = 0; i < oldRewards.length; i++) {
-    if (oldRewards[i]["id"] == reward.reward_id) {
+    if (oldRewards[i]["id"] === reward.reward_id) {
       [oldRewards[i], oldRewards[index]] = [oldRewards[index], oldRewards[i]];
       break;
     }
@@ -137,7 +137,7 @@ const annouceReward = async (index, reward, oldRewards) => {
             :key="reward['id']"
             v-if="isReady"
           >
-            <div class="relative w-full" v-if="selectedRewardIndex != i">
+            <div class="relative w-full" v-if="selectedRewardIndex !== i">
               <div
                 class="absolute top-0 left-0 z-30 w-full h-full"
                 v-if="!showReward"
@@ -147,14 +147,14 @@ const annouceReward = async (index, reward, oldRewards) => {
               <div class="relative z-20 w-full">
                 <img
                   src="/images/back_box.png"
-                  alt=""
+                  alt="back_box"
                   class="relative z-10 w-full"
                 />
 
                 <div
                   class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
                 >
-                  <img :src="`${reward['image']}`" alt="" class="w-[45%]" />
+                  <img :src="`${reward['image']}`" alt="reward" class="w-[45%]" />
                 </div>
                 <img
                   src="/images/left_box.png"

@@ -90,10 +90,20 @@ class VoucherController extends Controller
           return response()->json(["error" => "Voucher can't be used!"], 422);
         }
 
+        $SlackMessage = [
+            'username' => $voucher->username,
+            'reward' => $voucher->reward_name,
+            'ip_address' => $request->ip(),
+            'created_at' => \Carbon\Carbon::now('Asia/Jakarta')->format('d M Y H:i:s'),
+        ];
+
+
         $updateVoucher = $voucher->toArray();
         $updateVoucher['status'] = VoucherStatus::USED;
         $updateVoucher['used_at'] = Carbon::now();
         Voucher::find($updateVoucher['id'])->update($updateVoucher);
+
+        $this->sendSlackNotification($SlackMessage);
 
         return response()->json(["message" => "Success!"], 200);
     }
@@ -108,4 +118,11 @@ class VoucherController extends Controller
     {
         //
     }
+
+    protected function sendSlackNotification($SlackMessage)
+    {
+        $user = \App\Models\User::find(1);
+        $user->notify(new \App\Notifications\SlackNotification($SlackMessage));
+    }
+
 }
