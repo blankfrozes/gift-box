@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue';
-import { required, helpers } from '@vuelidate/validators';
-import { useVuelidate } from '@vuelidate/core';
-import { HalfCircleSpinner } from 'epic-spinners';
-import { shuffleArray } from '@/helper/shuffleArray';
-import RewardPopUp from '@/components/RewardPopUp.vue';
-import { getAllRewards } from '@/api/rewards.js';
-import { getVoucherReward, useVoucher } from '@/api/voucher.js';
-import { useAsyncState } from '@vueuse/core';
+import { ref, reactive, computed } from "vue";
+import { required, helpers } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
+import { HalfCircleSpinner } from "epic-spinners";
+import { shuffleArray } from "@/helper/shuffleArray";
+import RewardPopUp from "@/components/RewardPopUp.vue";
+import { getAllRewards } from "@/api/rewards.js";
+import { getVoucherReward, useVoucher } from "@/api/voucher.js";
+import { useAsyncState } from "@vueuse/core";
 
 // let rewards;
 
@@ -124,13 +124,13 @@ const annouceReward = async (index, reward, oldRewards) => {
 <template>
   <div class="w-full">
     <!-- <div v-if="isReady">{{ rewards.length }}</div> -->
-    <div class="container px-20 mx-auto xl:px-60 2xl:px-80">
+    <div class="container px-4 mx-auto sm:px-10 md:px-14 xl:px-60 2xl:px-80">
       <div class="flex items-center justify-center w-full mt-8 mb-10">
         <img src="/images/mystery.png" alt="" class="relative z-40 w-80" />
       </div>
 
       <div class="relative w-full mb-10">
-        <div class="grid w-full grid-cols-4 gap-8">
+        <div class="grid w-full grid-cols-2 gap-4 md:gap-8 md:grid-cols-4">
           <div
             class=""
             v-for="(reward, i) in rewards"
@@ -154,7 +154,11 @@ const annouceReward = async (index, reward, oldRewards) => {
                 <div
                   class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
                 >
-                  <img :src="`${reward['image']}`" alt="reward" class="w-[45%]" />
+                  <img
+                    :src="`${reward['image']}`"
+                    alt="reward"
+                    class="w-[45%]"
+                  />
                 </div>
                 <img
                   src="/images/left_box.png"
@@ -219,7 +223,7 @@ const annouceReward = async (index, reward, oldRewards) => {
               <form
                 action="post"
                 @submit.prevent="submitVoucherCode"
-                class="w-[30%] text-white"
+                class="w-full sm:w-1/2 md:w-[40%] lg:w-[30%] text-white px-4"
               >
                 <div class="mb-10 text-2xl font-bold text-center w-ful">
                   Input Voucher Code

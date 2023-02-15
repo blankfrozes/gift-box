@@ -69,7 +69,7 @@ class VoucherController extends Controller
           return response()->json($validator->errors(), 422);
         }
 
-        $voucher = Voucher::select(['id', 'code', 'reward_id', 'reward_name', 'reward_image', 'status'])->where('code', $request->voucher_code)->where('status', VoucherStatus::AVAILABLE_TO_USE)->first();
+        $voucher = Voucher::select(['id', 'code', 'username', 'reward_id', 'reward_name', 'reward_image', 'status'])->where('code', $request->voucher_code)->where('status', VoucherStatus::AVAILABLE_TO_USE)->first();
 
         if(!$voucher){
           return response()->json(["error" => "Voucher can't be used!"], 422);
