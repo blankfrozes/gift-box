@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('Api')->prefix('v1')->group(function () {
+Route::prefix('v1')->group(function () {
     includeRouteFiles(__DIR__.'/api/');
 });

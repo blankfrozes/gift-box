@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 /*
  * Admin Routes
  */
-Route::namespace('Admin')->middleware('auth:sanctum', config('jetstream.auth_session'), 'verified')->group(function () {
+Route::middleware('auth:sanctum', config('jetstream.auth_session'), 'verified')->group(function () {
     includeRouteFiles(__DIR__.'/admin/');
 });

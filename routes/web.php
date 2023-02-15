@@ -21,7 +21,7 @@ Route::get('/{any}', function () {
 //  * Admin Routes
 //  */
 // Route::group([
-//   'namespace' => 'Admin',
+//,
 //   'prefix' => 'admin',
 //   'middleware' => ['auth:sanctum'],
 // ], function () {
