@@ -95,7 +95,7 @@ const annouceReward = async (index, reward, oldRewards) => {
   }
 
   try {
-    await useVoucher(reward.value.id);
+    await useVoucher(reward.id);
   } catch (error) {
     return;
   }
@@ -105,7 +105,7 @@ const annouceReward = async (index, reward, oldRewards) => {
   oldRewards = shuffleArray(oldRewards);
 
   for (let i = 0; i < oldRewards.length; i++) {
-    if (oldRewards[i]["id"] == reward.value.reward_id) {
+    if (oldRewards[i]["id"] == reward.reward_id) {
       [oldRewards[i], oldRewards[index]] = [oldRewards[index], oldRewards[i]];
       break;
     }
@@ -131,16 +131,25 @@ const annouceReward = async (index, reward, oldRewards) => {
 
       <div class="relative w-full mb-10">
         <div class="grid w-full grid-cols-4 gap-8">
-          <div class="" v-for="(reward, i) in rewards" :key="reward['id']" v-if="isReady">
+          <div
+            class=""
+            v-for="(reward, i) in rewards"
+            :key="reward['id']"
+            v-if="isReady"
+          >
             <div class="relative w-full" v-if="selectedRewardIndex != i">
               <div
                 class="absolute top-0 left-0 z-30 w-full h-full"
                 v-if="!showReward"
-                @click="annouceReward(i, voucherReward, rewards)"
+                @click="annouceReward(i, voucherReward.value, rewards)"
               ></div>
 
               <div class="relative z-20 w-full">
-                <img src="/images/back_box.png" alt="" class="relative z-10 w-full" />
+                <img
+                  src="/images/back_box.png"
+                  alt=""
+                  class="relative z-10 w-full"
+                />
 
                 <div
                   class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
@@ -180,7 +189,10 @@ const annouceReward = async (index, reward, oldRewards) => {
           class="fixed top-0 left-0 z-30 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-30"
           v-if="!enableReward"
         >
-          <div class="flex flex-col justify-center w-full gap-x-4" v-if="showChoice">
+          <div
+            class="flex flex-col justify-center w-full gap-x-4"
+            v-if="showChoice"
+          >
             <div class="mb-10 text-2xl font-bold text-center text-white w-ful">
               WELCOME TO MYSTERY BOX
             </div>
@@ -219,7 +231,8 @@ const annouceReward = async (index, reward, oldRewards) => {
                     name="code"
                     class="w-full px-4 py-2 text-black rounded disabled:bg-gray-200"
                     :class="{
-                      '!border-red-500 focus:!border-red-500': v$.voucherCode.$error,
+                      '!border-red-500 focus:!border-red-500':
+                        v$.voucherCode.$error,
                       '!border-[#42d392] ': !v$.voucherCode.$invalid,
                     }"
                     :disabled="processSubmit"
@@ -239,8 +252,8 @@ const annouceReward = async (index, reward, oldRewards) => {
                     class="w-full px-2 text-sm font-bold text-white"
                     v-if="voucherError"
                   >
-                    The code you entered is wrong, please contact Admin to get the ticket
-                    code
+                    The code you entered is wrong, please contact Admin to get
+                    the ticket code
                     <a
                       href="#"
                       class="text-green-500 hover:underline hover:text-green-700"
@@ -283,7 +296,10 @@ const annouceReward = async (index, reward, oldRewards) => {
         </div>
       </div>
 
-      <div class="flex justify-center w-full" v-if="showReward && !voucherReward">
+      <div
+        class="flex justify-center w-full"
+        v-if="showReward && !voucherReward"
+      >
         <button
           @click="startInput"
           class="px-6 py-3 text-sm font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
