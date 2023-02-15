@@ -26,13 +26,13 @@ defineExpose({
 <template>
   <transition-fade>
     <div
-      class="w-full fixed z-50 bg-black bg-opacity-50 h-[100vh] flex flex-col justify-center items-center top-0"
+      class="w-full fixed z-50 bg-black bg-opacity-50 h-full flex flex-col justify-center items-center top-0"
       v-if="show"
     >
       <div class="w-full px-4 mb-40 text-base text-center xl:px-20 md:text-xl">
         <div class="w-full mb-4 font-bold text-orange-500">
-          Congratulations!, you won {{ reward.reward_name }}. Please Screenshot
-          this page as your winning proof.
+          Congratulations!, you won {{ reward.reward_name }}. Please Screenshot this page
+          as your winning proof.
         </div>
 
         <div class="w-full mb-6 font-bold text-white">
@@ -58,13 +58,9 @@ defineExpose({
       </div>
 
       <transition-scale>
-        <div v-if="showBox" class="relative w-64 md:w-80 max-w-[100%]">
+        <div v-if="showBox" class="relative w-48 sm:w-64 md:w-80 max-w-[100%]">
           <div class="relative z-20 w-full">
-            <img
-              src="/images/back_box.png"
-              alt=""
-              class="relative z-10 w-full"
-            />
+            <img src="/images/back_box.png" alt="" class="relative z-10 w-full" />
 
             <div
               class="absolute top-0 left-0 z-20 flex items-center justify-center w-full h-full"
