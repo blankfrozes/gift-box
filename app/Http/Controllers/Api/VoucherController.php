@@ -103,7 +103,7 @@ class VoucherController extends Controller
         $updateVoucher['used_at'] = Carbon::now();
         Voucher::find($updateVoucher['id'])->update($updateVoucher);
 
-        $this->sendSlackNotification($SlackMessage);
+        // $this->sendSlackNotification($SlackMessage);
 
         return response()->json(["message" => "Success!"], 200);
     }
