@@ -230,6 +230,9 @@ const annouceReward = async (index, reward, oldRewards) => {
                     v-model="input.voucherCode"
                     @blur="v$.voucherCode.$touch"
                     placeholder="Voucher Code"
+                    @input="
+                      (val) => (input.voucherCode = input.voucherCode.toUpperCase())
+                    "
                     autofocus
                   />
                   <div
