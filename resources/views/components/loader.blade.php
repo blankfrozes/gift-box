@@ -1,3 +1,8 @@
-<div>
-    <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
+<div class="ease-linear border-gray-200 rounded-full hermes-loader"
+    style="
+        width: {{ $width }}rem;
+        height: {{ $height }}rem;
+        border-width: {{ $thickness }}px;
+        border-top-width: {{ $thickness }}px;
+    ">
 </div>
